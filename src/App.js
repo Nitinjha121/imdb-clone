@@ -3,7 +3,6 @@ import Nav from "./components/Nav";
 import SideBar from "./components/SideBar";
 import styled from "styled-components";
 import Home from "./components/Home";
-import "./styles/SideBar.css";
 import { Switch, Route } from "react-router-dom";
 import Single from "./components/Single";
 import SearchResult from "./components/SearchResult";
@@ -15,7 +14,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <BarStyle>
-        {<SideBar />}
+        <SideBar />
         <div className="right-side">
           <Nav />
           <div className="changeble">
@@ -26,12 +25,19 @@ function App() {
               <Route path="/:media_type/list/:id">
                 <Single />
               </Route>
-              <Route path="/:media_type/:type">
-                <Collection />
-              </Route>
-              <Route path="/search">
-                <SearchResult />
-              </Route>
+              <Route
+                path="/:media_type/:type"
+                component={(props) => (
+                  <Collection {...props} key={window.location.pathname} />
+                )}
+              />
+
+              <Route
+                path="/search"
+                component={(props) => (
+                  <SearchResult {...props} key={window.location.pathname} />
+                )}
+              />
               <Route path="/favourite">
                 <Favourite />
               </Route>
@@ -47,11 +53,5 @@ export default App;
 
 const BarStyle = styled.div`
   display: flex;
-  width: 75%;
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
+  width: 100%;
 `;
-
-// const Right

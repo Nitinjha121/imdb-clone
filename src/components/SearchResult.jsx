@@ -22,21 +22,31 @@ function SearchResult() {
 
   const pageNum = +path.get("page");
 
+  console.log(getSearchData);
+
   useEffect(() => {
     if (!hasFetchedData.current) {
-      dispatch(searchAction(path.get("query"), pageNum));
+      dispatch(searchAction(path.get("query"), path.get("filter"), pageNum));
       hasFetchedData.current = true;
     }
   }, [dispatch, pageNum, path]);
 
   const nextHandler = function () {
-    history.push(`/search/?query=${path.get("query")}&page=${pageNum + 1}`);
-    dispatch(searchAction(path.get("query"), pageNum + 1));
+    history.push(
+      `/search/?query=${path.get("query")}&page=${
+        pageNum + 1
+      }&filter=${path.get("filter")}`
+    );
+    dispatch(searchAction(path.get("query"), path.get("filter"), pageNum + 1));
   };
 
   const prevHandler = function () {
-    history.push(`/search/?query=${path.get("query")}&page=${pageNum - 1}`);
-    dispatch(searchAction(path.get("query"), pageNum - 1));
+    history.push(
+      `/search/?query=${path.get("query")}&page=${
+        pageNum - 1
+      }&filter=${path.get("filter")}`
+    );
+    dispatch(searchAction(path.get("query"), path.get("filter"), pageNum - 1));
   };
 
   return isLoading ? (
@@ -46,21 +56,29 @@ function SearchResult() {
       <SearchDataStyle>
         {getSearchData.map((searchData, i) => (
           <SingleData key={i}>
-            <Link to={`/${searchData.media_type}/list/${searchData.id}`}>
-              <img
-                src={
-                  img +
-                  ((searchData.profile_path &&
-                    "w300" + searchData.profile_path) ||
-                    (searchData.poster_path && "w780" + searchData.poster_path))
-                }
-                alt={
-                  searchData.original_name ||
-                  searchData.title ||
-                  searchData.name
-                }
-              />
-            </Link>
+            {console.log(searchData)}
+            <div className="img">
+              <Link
+                to={`/${searchData.first_air_date ? "tv" : "movie"}/list/${
+                  searchData.id
+                }`}
+              >
+                <img
+                  src={
+                    img +
+                    ((searchData.profile_path &&
+                      "w300" + searchData.profile_path) ||
+                      (searchData.poster_path &&
+                        "w780" + searchData.poster_path))
+                  }
+                  alt={
+                    searchData.original_name ||
+                    searchData.title ||
+                    searchData.name
+                  }
+                />
+              </Link>
+            </div>
             <p>
               <Star
                 src="https://img.icons8.com/fluent/48/000000/star.png"
@@ -68,7 +86,11 @@ function SearchResult() {
               />
               <span>{searchData.vote_average}/10</span>
             </p>
-            <Link to={`/${searchData.media_type}/list/${searchData.id}`}>
+            <Link
+              to={`/${searchData.first_air_date ? "tv" : "movie"}/list/${
+                searchData.id
+              }`}
+            >
               <h3>
                 {searchData.original_name ||
                   searchData.title ||
@@ -107,7 +129,8 @@ const SearchResults = styled.div`
 const SingleData = styled.div`
   margin: 10px;
   background-color: #c0c0c0;
-  width: 180px;
+  width: 170px;
+  box-shadow: 0 4px 25px rgb(14 36 49 / 15%);
 
   img {
     width: min(200px, 100%);

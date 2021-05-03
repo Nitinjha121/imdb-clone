@@ -18,9 +18,9 @@ export const fetchById = function (media, id) {
   return bashUrl(`${media}/${id}`);
 };
 
-export const searchData = function (search, page = "1") {
+export const searchData = function (search, filter = "multi", page = 1) {
   return bashUrl(
-    "search/multi",
+    `search/${filter}`,
     `&query=${search}&include_adult=false&page=${page}`
   );
 };

@@ -27,7 +27,7 @@ function Collection() {
       dispatch(collectionAction(path[1], path[2], pageNum));
       hasFetchedData.current = true;
     }
-  }, [dispatch, path, pageNum]);
+  }, [dispatch, path, pageNum, collectionMedia]);
 
   const nextHandler = function () {
     history.push(`/${path[1]}/${path[2]}?page=${pageNum + 1}`);
@@ -46,17 +46,18 @@ function Collection() {
       <SearchDataStyle>
         {collectionMedia.map((collection, i) => (
           <SingleData key={i}>
-            <Link to={`/${path[1]}/list/${collection.id}`}>
-              <img
-                src={img + collection.poster_path}
-                alt={
-                  collection.original_name ||
-                  collection.title ||
-                  collection.name
-                }
-              />
-            </Link>
-
+            <div className="img">
+              <Link to={`/${path[1]}/list/${collection.id}`}>
+                <img
+                  src={img + collection.poster_path}
+                  alt={
+                    collection.original_name ||
+                    collection.title ||
+                    collection.name
+                  }
+                />
+              </Link>
+            </div>
             <p>
               <Star
                 src="https://img.icons8.com/fluent/48/000000/star.png"
@@ -108,6 +109,7 @@ const SingleData = styled.div`
   background-color: #c0c0c0;
   width: 180px;
   justify-self: center;
+  box-shadow: 0 4px 25px rgb(14 36 49 / 15%);
   img {
     width: min(200px, 100%);
     cursor: pointer;

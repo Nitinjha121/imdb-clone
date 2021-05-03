@@ -28,7 +28,6 @@ function Favourite() {
     setArr(result);
   }, [setArr]);
 
-  console.log(arr);
   return (
     <SearchDataStyle>
       {!arr.length ? (
@@ -36,13 +35,18 @@ function Favourite() {
       ) : (
         arr.map((data, i) => (
           <SingleData key={i}>
-            <Link to={`/${data}/list/${data.id}`}>
-              <img
-                src={img + data.poster_path}
-                alt={data.original_name || data.title || data.name}
-              />
-            </Link>
-
+            <div className="img">
+              <Link
+                to={`/${data.episode_run_time ? "tv" : "movie"}/list/${
+                  data.id
+                }`}
+              >
+                <img
+                  src={img + data.poster_path}
+                  alt={data.original_name || data.title || data.name}
+                />
+              </Link>
+            </div>
             <p>
               <Star
                 src="https://img.icons8.com/fluent/48/000000/star.png"

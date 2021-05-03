@@ -40,9 +40,11 @@ function List({ datas, name, media_type, type }) {
       <PosterContainer>
         {datas.map((data, i) => (
           <Poster key={i}>
-            <Link to={`/${media_type}/list/${data.id}`}>
-              <img src={img + data.poster_path} alt={data.title} />
-            </Link>
+            <div className="img">
+              <Link to={`/${media_type}/list/${data.id}`}>
+                <img src={img + data.poster_path} alt={data.title} />
+              </Link>
+            </div>
             {checkLocalStorage.call(this, data.id) ? (
               <FavoriteIcon className="favourite" style={{ color: "red" }} />
             ) : (
@@ -82,7 +84,7 @@ const PosterContainer = styled.div`
 const Poster = styled.div`
   background-color: rgb(26, 26, 26);
   margin: 20px;
-
+  box-shadow: 0 4px 25px rgb(241 218 206 / 15%);
   position: relative;
 
   a {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -10,29 +10,32 @@ function Nav() {
   const history = useHistory();
 
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("multi");
+  const fetchData = useRef(false);
 
   const location = useLocation();
 
-  window.onload = function () {
-    if (location.search.includes("?query")) {
+  useEffect(() => {
+    if (!fetchData.current) {
       const path = new URLSearchParams(location.search);
-      loadHandler(path.get("query"));
+      dispatch(searchAction(path.get("query")));
+      fetchData.current = true;
     }
-  };
-
-  function loadHandler(search) {
-    dispatch(searchAction(search));
-  }
+  }, [dispatch, location]);
 
   const formHandler = (e) => {
     e.preventDefault();
-    history.push(`/search?query=${search}&page=1`);
+    history.push(`/search?query=${search}&page=1&filter=${filter}`);
 
-    dispatch(searchAction(search));
+    dispatch(searchAction(search, filter));
   };
 
   const changeHandler = (e) => {
     setSearch(e.target.value);
+  };
+
+  const filterHandler = (e) => {
+    setFilter(e.target.value);
   };
 
   return (
@@ -41,12 +44,10 @@ function Nav() {
         <h1>IMDB</h1>
       </Link>
       <Search>
-        <select className="filter">
-          <option value="all">All</option>
+        <select className="filter" onClick={filterHandler}>
+          <option value="multi">All</option>
           <option value="movie">Movies</option>
           <option value="tv">Tv Shows</option>
-          <option value="action">Action</option>
-          <option value="scifi">Sci-fi</option>
         </select>
         <form onSubmit={formHandler}>
           <input
@@ -128,6 +129,7 @@ const NavStyle = styled.div`
     border-radius: 20px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    padding-bottom: 9.5px;
     border-right: none;
     position: relative;
     outline: none;

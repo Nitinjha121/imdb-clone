@@ -1,4 +1,4 @@
-import { fetchPopularMovie, fetchPopularTv } from "./api";
+import { fetchPopularMovie } from "./api";
 
 import axios from "axios";
 
@@ -9,13 +9,11 @@ const popularMovieAction = () => async (dispatch) => {
     });
 
     const popularMovie = await axios.get(fetchPopularMovie);
-    const popularTv = await axios.get(fetchPopularTv);
 
     dispatch({
       type: "POPULAR_MOVIE",
       payload: {
         popularMovie,
-        popularTv,
       },
     });
   } catch (err) {

@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
 
 :root {
     --primary-bg:#000000;
+    --width:max(12vw,200px);
+    
 }
 
 body {
@@ -18,12 +20,74 @@ body {
     background-color:var(--primary-bg);
     color:#ffffff;
     font-family:"Poppins",sans-serif;
+    
+
 }
 
 .App{
     height:100%;
     width:100%;
-    /* overflow-x: hidden; */
+    
+}
+
+.menuToggle {
+  display: none !important;
+}
+
+.hideImg {
+  transform: translateX(-100%);
+}
+
+.container-title {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.container-title:hover .right__key__icon {
+  color: red;
+}
+
+.container-title::before {
+  content: "";
+  display: block;
+  height: 30px;
+  width: 4px;
+  border-radius: 10px;
+  margin-right: 10px;
+  background-color: red;
+}
+
+@media (max-width: 900px) {
+  .menuToggle {
+    display: inline !important;
+    margin: 10px;
+    z-index: 8;
+    position: sticky;
+    cursor: pointer;
+    top: 10px;
+  }
+  .short_hidden {
+    opacity: 0;
+    width: 0% !important;
+    transition: all 1s !important;
+  }
+}
+
+.img{
+  overflow: hidden;
+  width:100%;
+  height:255px;
+  img{
+
+    transition: all 1s;
+  }
+  img:hover{
+    transition: all 1s;
+transform:scale(1.1);
+
+  }
 }
 
 button {
@@ -78,12 +142,10 @@ button {
 }
 
 .right-side{
-  width: min(94%, 900px);
-}
-
-@media (min-width: 900px){
-  .right-side{
-    width: 100%;
+  width:calc(100% - var(--width));
+  
+  @media (max-width:900px) {
+    width:94%
   }
 }
 

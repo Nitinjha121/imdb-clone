@@ -9,8 +9,8 @@ const movieReducer = (state = intialState, action) => {
     case "POPULAR_MOVIE":
       return {
         ...state,
-        popularMovie: action.payload.popularMovie.data.results,
         isLoading: false,
+        popularMovie: action.payload.popularMovie.data.results,
       };
     case "ERROR":
       return { ...state, error: action.payload };

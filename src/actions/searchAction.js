@@ -1,13 +1,13 @@
 import { searchData } from "./api";
 import axios from "axios";
 
-const searchAction = (search, page) => async (dispatch) => {
+const searchAction = (search, filter, page) => async (dispatch) => {
   try {
     dispatch({
       type: "LOADING_DETAIL",
     });
 
-    const getSearch = await axios.get(searchData(search, page));
+    const getSearch = await axios.get(searchData(search, filter, page));
 
     dispatch({
       type: "GET_SEARCH",

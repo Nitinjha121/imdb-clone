@@ -175,7 +175,7 @@ const Single = React.memo(() => {
                 </span>
               </p>
             )}
-            {!checkLocalStorage.call(this, byId.id) && !fav && (
+            {!fav && !checkLocalStorage.call(this, byId.id) && (
               <button
                 className="btn"
                 onClick={() => {
@@ -198,6 +198,15 @@ const Single = React.memo(() => {
                 Delete From Favourite
               </button>
             )}
+            {checkLocalStorage.call(this, byId.id) && (
+              <FormStyle>
+                <h3>Add Comments</h3>
+                <label>Rating</label>
+                <input />
+                <label>Comment</label>
+                <input />
+              </FormStyle>
+            )}
           </div>
         </div>
       </BodyStyle>
@@ -206,6 +215,20 @@ const Single = React.memo(() => {
 });
 
 export default Single;
+
+const FormStyle = styled.form`
+  padding: 30px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+  }
+`;
 
 const HeaderStyle = styled.div`
   padding: 5px;

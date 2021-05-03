@@ -12,13 +12,17 @@ import Error from "./Error";
 function Home() {
   const dispatch = useDispatch();
 
-  const { topRatedMovieO, popularTvO, trendingMovieO } = useSelector(
-    (state) => state
-  );
+  const {
+    topRatedMovieO,
+    popularTvO,
+    trendingMovieO,
+    popularMovieO,
+  } = useSelector((state) => state);
 
   const isLoading1 = topRatedMovieO.isLoading;
   const isLoading2 = trendingMovieO.isLoading;
   const isLoading3 = popularTvO.isLoading;
+  const isLoading4 = popularMovieO.isLoading;
 
   useEffect(() => {
     dispatch(popularMovieAction());
@@ -62,6 +66,18 @@ function Home() {
             datas={popularTvO.popularTv}
             name="Popular Tv Shows"
             media_type="tv"
+            type="popular"
+          />
+        )}
+      </DivStyle>
+      <DivStyle>
+        {isLoading4 ? (
+          <div className="nfLoader"></div>
+        ) : (
+          <List
+            datas={popularMovieO.popularMovie}
+            name="Popular Movie"
+            media_type="movie"
             type="popular"
           />
         )}

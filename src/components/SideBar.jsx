@@ -6,6 +6,7 @@ import TvIcon from "@material-ui/icons/Tv";
 import PeopleIcon from "@material-ui/icons/People";
 import { useDispatch } from "react-redux";
 import popularMovieAction from "../actions/popularMovieAction";
+import popularTvAction from "../actions/popularTvAction";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -28,18 +29,23 @@ function SideBar() {
       callBack() {
         dispatch(popularMovieAction());
       },
-      link: "/favourite",
+      link: "/movie/popular?page=1",
     },
-    { name: "Tv Shows", icon: <TvIcon />, link: "/" },
+    {
+      name: "Tv Shows",
+      icon: <TvIcon />,
+      link: "/tv/popular?page=1",
+      callBack() {
+        dispatch(popularTvAction());
+      },
+    },
     { name: "Celebs", icon: <PeopleIcon />, link: "/" },
-    { name: "Favourite", icon: <FavoriteBorderIcon />, link: "/" },
+    { name: "Favourite", icon: <FavoriteBorderIcon />, link: "/favourite" },
   ];
 
   const clickHandler = () => {
     setNavMenu(!navMenu);
   };
-
-  // console.log(select);
 
   const genre = [{ name: "Action", icon: "" }];
 
@@ -63,11 +69,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   background-color: var(--primary-bg);
   position: sticky;
   top: 0;
-  z-index: 5;
-  min-height: 100vh;
+  z-index: 4;
+  height: 100vh;
+  /* width: 50px; */
 
   a {
     text-decoration: none;
@@ -78,9 +86,10 @@ const Container = styled.div`
 const SideBarStyle = styled.div`
   display: flex;
   flex-direction: column;
-  width: max(200px, 12vw);
   padding: 10px;
   height: 100%;
+  width: var(--width);
+
   position: sticky;
   top: 0;
 
