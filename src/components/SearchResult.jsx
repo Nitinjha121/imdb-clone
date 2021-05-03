@@ -56,7 +56,6 @@ function SearchResult() {
       <SearchDataStyle>
         {getSearchData.map((searchData, i) => (
           <SingleData key={i}>
-            {console.log(searchData)}
             <div className="img">
               <Link
                 to={`/${searchData.first_air_date ? "tv" : "movie"}/list/${
