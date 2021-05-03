@@ -55,7 +55,9 @@ function Favourite() {
               <span>{data.vote_average}/10</span>
             </p>
 
-            <Link to={data.media_type + "/list/" + data.id}>
+            <Link
+              to={`/${data.episode_run_time ? "tv" : "movie"}/list/${data.id}`}
+            >
               <h3>{data.original_name || data.title || data.name}</h3>
             </Link>
             <DeleteIcon

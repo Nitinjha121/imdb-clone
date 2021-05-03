@@ -8,6 +8,8 @@ import {
   moneyHandler,
   checkLocalStorage,
   deleteLocalStorage,
+  ratingHandler,
+  formHandler,
 } from "./helper/function";
 
 const Single = React.memo(() => {
@@ -88,7 +90,33 @@ const Single = React.memo(() => {
           {<img src={img + "w1280" + byId.backdrop_path} alt={title} />}
         </div>
         <div className="info__container">
-          {<img src={img + "w780" + byId.poster_path} alt={title} />}
+          <div className="left__side">
+            {<img src={img + "w780" + byId.poster_path} alt={title} />}
+            {checkLocalStorage.call(this, byId.id) && (
+              <FormStyle onSubmit={formHandler}>
+                <h3>Add Comments</h3>
+                <label>Rating</label>
+
+                <div className="star__rating" name="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span
+                    onClick={ratingHandler}
+                    class="fa fa-star checked"
+                  ></span>
+                  <span
+                    onClick={ratingHandler}
+                    class="fa fa-star checked"
+                  ></span>
+                  <span onClick={ratingHandler} class="fa fa-star"></span>
+                  <span onClick={ratingHandler} class="fa fa-star"></span>
+                </div>
+                <label>Comment</label>
+                <input name="comment" />
+                <button>Submit</button>
+              </FormStyle>
+            )}
+          </div>
+
           <div className="right__side" style={{ color: "#C0C0C0" }}>
             <p>
               Name: <span style={spanStyle}>{title}</span>
@@ -198,15 +226,6 @@ const Single = React.memo(() => {
                 Delete From Favourite
               </button>
             )}
-            {checkLocalStorage.call(this, byId.id) && (
-              <FormStyle>
-                <h3>Add Comments</h3>
-                <label>Rating</label>
-                <input />
-                <label>Comment</label>
-                <input />
-              </FormStyle>
-            )}
           </div>
         </div>
       </BodyStyle>
@@ -223,10 +242,22 @@ const FormStyle = styled.form`
   flex-direction: column;
   align-items: center;
 
+  .star__rating {
+    display: flex;
+    span {
+      cursor: pointer;
+    }
+    .checked {
+      color: orange;
+    }
+  }
+
   input {
     padding: 10px;
     border: none;
     border-radius: 20px;
+    outline: none;
+    margin: 20px 0;
   }
 `;
 
@@ -258,6 +289,15 @@ const HeaderStyle = styled.div`
 const BodyStyle = styled.section`
   p {
     position: relative;
+  }
+
+  .left__side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      object-fit: contain;
+    }
   }
 
   .btn {

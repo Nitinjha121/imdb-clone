@@ -24,3 +24,20 @@ export const checkLocalStorage = function (id) {
 export const deleteLocalStorage = function (id) {
   localStorage.removeItem(id);
 };
+
+export const ratingHandler = function (e) {
+  e.target.classList.toggle("checked");
+};
+
+export const formHandler = function (e) {
+  e.preventDefault();
+
+  let count = 0;
+
+  // localStorage.setItem(i)
+  for (let i = 0; i < 5; i++) {
+    if (e.target.childNodes[2].childNodes[i].classList.contains("checked"))
+      count++;
+  }
+  console.log(count);
+};
