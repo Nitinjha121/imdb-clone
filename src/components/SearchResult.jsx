@@ -19,8 +19,6 @@ function SearchResult() {
 
   const pageNum = +path.get("page");
 
-  console.log(getSearchData);
-
   useEffect(() => {
     if (!hasFetchedData.current) {
       dispatch(searchAction(path.get("query"), path.get("filter"), pageNum));

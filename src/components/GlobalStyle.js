@@ -71,8 +71,7 @@ body {
   .short_hidden {
     opacity: 0;
     width: 0% !important;
-    transition: opacity 0.1s !important;
-    transition: width 1s !important;
+    transition: all 1s !important;
   }
 }
 

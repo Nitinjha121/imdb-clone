@@ -39,7 +39,7 @@ function SideBar() {
         dispatch(popularTvAction());
       },
     },
-    { name: "Celebs", icon: <PeopleIcon />, link: "/" },
+    // { name: "Celebs", icon: <PeopleIcon />, link: "/" },
     { name: "Favourite", icon: <FavoriteBorderIcon />, link: "/favourite" },
   ];
 
@@ -57,7 +57,7 @@ function SideBar() {
           <h1>IMDB</h1>
         </Link>
         <Menu arr={menu} menuName="Menu" />
-        <Menu arr={genre} menuName="Genre" />
+        {/* <Menu arr={genre} menuName="Genre" /> */}
       </SideBarStyle>
     </Container>
   );
@@ -89,7 +89,6 @@ const SideBarStyle = styled.div`
   padding: 10px;
   height: 100%;
   width: var(--width);
-
   position: sticky;
   top: 0;
 

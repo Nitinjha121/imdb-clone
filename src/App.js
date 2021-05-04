@@ -8,6 +8,7 @@ import Single from "./components/Single";
 import SearchResult from "./components/SearchResult";
 import Collection from "./components/Collection";
 import Favourite from "./components/Favourite";
+import NotFound from "./components/404";
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
               />
               <Route path="/favourite">
                 <Favourite />
+              </Route>
+              <Route path="*">
+                <NotFound />
               </Route>
             </Switch>
           </div>
