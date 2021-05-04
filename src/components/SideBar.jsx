@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Menu from "./Menu";
 import MovieIcon from "@material-ui/icons/Movie";
 import TvIcon from "@material-ui/icons/Tv";
-import PeopleIcon from "@material-ui/icons/People";
+
 import { useDispatch } from "react-redux";
 import popularMovieAction from "../actions/popularMovieAction";
 import popularTvAction from "../actions/popularTvAction";
@@ -47,7 +47,7 @@ function SideBar() {
     setNavMenu(!navMenu);
   };
 
-  const genre = [{ name: "Action", icon: "" }];
+  // const genre = [{ name: "Action", icon: "" }];
 
   return (
     <Container>
