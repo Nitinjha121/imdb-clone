@@ -98,17 +98,17 @@ const Single = React.memo(() => {
                 <label>Rating</label>
 
                 <div className="star__rating" name="rating">
-                  <span class="fa fa-star checked"></span>
+                  <span className="fa fa-star checked"></span>
                   <span
                     onClick={ratingHandler}
-                    class="fa fa-star checked"
+                    className="fa fa-star checked"
                   ></span>
                   <span
                     onClick={ratingHandler}
-                    class="fa fa-star checked"
+                    className="fa fa-star checked"
                   ></span>
-                  <span onClick={ratingHandler} class="fa fa-star"></span>
-                  <span onClick={ratingHandler} class="fa fa-star"></span>
+                  <span onClick={ratingHandler} className="fa fa-star"></span>
+                  <span onClick={ratingHandler} className="fa fa-star"></span>
                 </div>
                 <label>Comment</label>
                 <input name="comment" />

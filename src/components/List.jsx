@@ -8,7 +8,7 @@ import { checkLocalStorage } from "./helper/function";
 import { Star } from "./GlobalStyle";
 
 function List({ datas, name, media_type, type }) {
-  const img = "https://image.tmdb.org/t/p/w780";
+  const img = "https://image.tmdb.org/t/p/w300";
 
   const dispatch = useDispatch();
 

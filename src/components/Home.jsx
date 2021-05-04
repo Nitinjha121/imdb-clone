@@ -6,8 +6,8 @@ import popularTvAction from "../actions/popularTvAction";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import BackgroundImg from "./BackgroundImg";
-import List from "./List";
 import Error from "./Error";
+import jsxhandler from "./helper/jsxhandler";
 
 function Home() {
   const dispatch = useDispatch();
@@ -46,42 +46,28 @@ function Home() {
       <DivStyle>
         {homeRenderHelperFun(isLoading2, trendingMovieO, BackgroundImg, Error)}
       </DivStyle>
-      <DivStyle>
-        {isLoading1 ? (
-          <div className="nfLoader"></div>
-        ) : (
-          <List
-            datas={topRatedMovieO.topRatedMovie}
-            name="Top Rated Movies"
-            media_type="movie"
-            type="top_rated"
-          />
-        )}
-      </DivStyle>
-      <DivStyle>
-        {isLoading3 ? (
-          <div className="nfLoader"></div>
-        ) : (
-          <List
-            datas={popularTvO.popularTv}
-            name="Popular Tv Shows"
-            media_type="tv"
-            type="popular"
-          />
-        )}
-      </DivStyle>
-      <DivStyle>
-        {isLoading4 ? (
-          <div className="nfLoader"></div>
-        ) : (
-          <List
-            datas={popularMovieO.popularMovie}
-            name="Popular Movie"
-            media_type="movie"
-            type="popular"
-          />
-        )}
-      </DivStyle>
+
+      {jsxhandler(
+        isLoading1,
+        topRatedMovieO.topRatedMovie,
+        "Top Rated Movies",
+        "movie",
+        "top_rated"
+      )}
+      {jsxhandler(
+        isLoading3,
+        popularTvO.popularTv,
+        "Popular Tv Shows",
+        "tv",
+        "popular"
+      )}
+      {jsxhandler(
+        isLoading4,
+        popularMovieO.popularMovie,
+        "Popular Movie",
+        "movie",
+        "popular"
+      )}
     </HomeStyle>
   );
 }
@@ -92,7 +78,6 @@ const HomeStyle = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const DivStyle = styled.div`
+export const DivStyle = styled.div`
   position: relative;
 `;

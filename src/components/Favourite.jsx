@@ -12,7 +12,7 @@ function Favourite() {
     setArr(renderFunction());
   };
 
-  const img = "https://image.tmdb.org/t/p/w780";
+  const img = "https://image.tmdb.org/t/p/w300";
 
   const renderFunction = () => {
     const container = [];
