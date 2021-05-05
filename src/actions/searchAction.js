@@ -1,5 +1,4 @@
-import { searchData } from "./api";
-import axios from "axios";
+import { searchData, bashUrl } from "./api";
 
 const searchAction = (search, filter, page) => async (dispatch) => {
   try {
@@ -7,7 +6,7 @@ const searchAction = (search, filter, page) => async (dispatch) => {
       type: "LOADING_DETAIL",
     });
 
-    const getSearch = await axios.get(searchData(search, filter, page));
+    const getSearch = await bashUrl.get(searchData(search, filter, page));
 
     dispatch({
       type: "GET_SEARCH",

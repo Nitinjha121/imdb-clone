@@ -1,30 +1,32 @@
-const api_key = process.env.REACT_APP_API_KEY;
+import axios from "axios";
 
-const bashUrl = function (option, query = "") {
-  return `https://api.themoviedb.org/3/${option}?api_key=${api_key}${query}`;
-};
+const access_token = process.env.REACT_APP_ACCESS_TOKEN;
 
-export const fetchPopularMovie = bashUrl("movie/popular");
+export const bashUrl = axios.create({
+  baseURL: `https://api.themoviedb.org/3/`,
+  headers: {
+    Authorization: `Bearer ${access_token}`,
+  },
+});
 
-export const fetchTrendingMovie = bashUrl("trending/all/week");
+export const fetchPopularMovie = "movie/popular";
 
-export const fetchTopRatedMovie = bashUrl("movie/top_rated");
+export const fetchTrendingMovie = "trending/all/week";
 
-export const fetchGenreList = bashUrl("genre/movie/list");
+export const fetchTopRatedMovie = "movie/top_rated";
 
-export const fetchPopularTv = bashUrl("tv/popular");
+export const fetchGenreList = "genre/movie/list";
+
+export const fetchPopularTv = "tv/popular";
 
 export const fetchById = function (media, id) {
-  return bashUrl(`${media}/${id}`);
+  return `${media}/${id}`;
 };
 
 export const searchData = function (search, filter = "multi", page = 1) {
-  return bashUrl(
-    `search/${filter}`,
-    `&query=${search}&include_adult=false&page=${page}`
-  );
+  return `search/${filter}?&query=${search}&include_adult=false&page=${page}`;
 };
 
 export const fetchCollection = function (media, type, page = "1") {
-  return bashUrl(`${media}/${type}`, `&page=${page}`);
+  return `${media}/${type}?&page=${page}`;
 };

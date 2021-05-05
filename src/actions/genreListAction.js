@@ -1,6 +1,4 @@
-import { fetchGenreList } from "./api";
-
-import axios from "axios";
+import { fetchGenreList, bashUrl } from "./api";
 
 const genreListAction = () => async (dispatch) => {
   try {
@@ -8,7 +6,7 @@ const genreListAction = () => async (dispatch) => {
       type: "LOADING_DETAIL",
     });
 
-    const genreList = await axios.get(fetchGenreList);
+    const genreList = await bashUrl.get(fetchGenreList);
 
     dispatch({
       type: "GENRE_LISt",

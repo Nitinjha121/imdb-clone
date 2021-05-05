@@ -1,5 +1,4 @@
-import { fetchCollection } from "./api";
-import axios from "axios";
+import { fetchCollection, bashUrl } from "./api";
 
 const collectionAction = (media, type, page = "1") => async (dispatch) => {
   try {
@@ -7,7 +6,7 @@ const collectionAction = (media, type, page = "1") => async (dispatch) => {
       type: "LOADING_DETAIL",
     });
 
-    const fetchCollectionMedia = await axios.get(
+    const fetchCollectionMedia = await bashUrl.get(
       fetchCollection(media, type, page)
     );
 

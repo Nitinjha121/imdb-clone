@@ -1,12 +1,11 @@
-import { fetchById } from "./api";
-import axios from "axios";
+import { fetchById, bashUrl } from "./api";
 
 const movieById = (media, id) => async (dispatch) => {
   dispatch({
     type: "LOADING_DETAIL",
   });
 
-  const byId = await axios.get(fetchById(media, id));
+  const byId = await bashUrl.get(fetchById(media, id));
 
   dispatch({
     type: "BY_ID",

@@ -1,6 +1,4 @@
-import { fetchTopRatedMovie } from "./api";
-
-import axios from "axios";
+import { fetchTopRatedMovie, bashUrl } from "./api";
 
 const topRatedMovieAction = () => async (dispatch) => {
   try {
@@ -8,7 +6,7 @@ const topRatedMovieAction = () => async (dispatch) => {
       type: "LOADING_DETAIL",
     });
 
-    const topRatedMovie = await axios.get(fetchTopRatedMovie);
+    const topRatedMovie = await bashUrl.get(fetchTopRatedMovie);
 
     dispatch({
       type: "TOP_RATED_MOVIE",
