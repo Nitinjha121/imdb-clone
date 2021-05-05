@@ -24,9 +24,9 @@ export const fetchById = function (media, id) {
 };
 
 export const searchData = function (search, filter = "multi", page = 1) {
-  return `search/${filter}?&query=${search}&include_adult=false&page=${page}`;
+  return `search/${filter}?query=${search}&include_adult=false&page=${page}`;
 };
 
 export const fetchCollection = function (media, type, page = "1") {
-  return `${media}/${type}?&page=${page}`;
+  return `${media}/${type}?page=${page}`;
 };
