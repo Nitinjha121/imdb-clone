@@ -39,3 +39,16 @@ export const formHandler = function (e) {
   }
   console.log(count);
 };
+
+export const favouriteHandler = function (byId) {
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i) === byId.id) return;
+  }
+
+  localStorage.setItem(byId.id, JSON.stringify(byId));
+};
+
+export const nameHandler = function (name) {
+  if (name.length <= 20) return name;
+  return `${name.slice(0, 20)}...`;
+};

@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 :root {
     --primary-bg:#000000;
     --width:max(12vw,200px);
-    
+    --min-width:30px;
 }
 
 body {
@@ -97,9 +97,14 @@ button {
     outline:none;
     border-radius:10px;
     border:none;
-    box-shadow: 0 4px 25px rgb(14 36 49 / 15%);
-    background-color:red;
     color:#ffffff;
+    background-color:red;
+}
+
+button:hover{
+  
+  box-shadow: 0px 0px 20px 2px black,
+              0px 0px 20px 2px red ;
 }
 
 
@@ -145,7 +150,7 @@ button {
   width:calc(100% - var(--width));
   
   @media (max-width:900px) {
-    width:94%
+    width:calc(100% - var(--min-width));
   }
 }
 

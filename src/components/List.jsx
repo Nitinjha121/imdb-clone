@@ -4,11 +4,11 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import collectionAction from "../actions/collectionAction";
 import { useDispatch } from "react-redux";
-import { checkLocalStorage } from "./helper/function";
+import { checkLocalStorage, nameHandler } from "./helper/function";
 import { Star } from "./GlobalStyle";
 
 function List({ datas, name, media_type, type }) {
-  const img = "https://image.tmdb.org/t/p/w300";
+  const img = "https://image.tmdb.org/t/p/w185";
 
   const dispatch = useDispatch();
 
@@ -59,7 +59,9 @@ function List({ datas, name, media_type, type }) {
               <span>{data.vote_average}/10</span>
             </p>
             <Link to={`/${media_type}/list/${data.id}`}>
-              <h3>{data.title || data.name || data.original_name}</h3>
+              <h3>
+                {nameHandler(data.title || data.name || data.original_name)}
+              </h3>
             </Link>
           </Poster>
         ))}
@@ -82,9 +84,10 @@ const PosterContainer = styled.div`
 `;
 
 const Poster = styled.div`
-  background-color: rgb(26, 26, 26);
+  background-color: black;
   margin: 20px;
-  box-shadow: 0 4px 25px rgb(241 218 206 / 15%);
+  box-shadow: 0 4px 10px red, 0 -4px 10px red;
+  border-radius: 10px;
   position: relative;
 
   a {
@@ -96,9 +99,13 @@ const Poster = styled.div`
     text-decoration: underline;
   }
 
+  .img {
+    margin-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
   img {
     width: 170px;
-    margin-bottom: 10px;
     cursor: pointer;
   }
 

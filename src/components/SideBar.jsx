@@ -75,7 +75,10 @@ const Container = styled.div`
   top: 0;
   z-index: 4;
   height: 100vh;
-  /* width: 50px; */
+
+  @media (max-width: 900px) {
+    width: var(--min-width);
+  }
 
   a {
     text-decoration: none;

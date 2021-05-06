@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Star } from "./GlobalStyle";
+import { nameHandler } from "./helper/function";
 
 function Poster({ isLoading, data, pageNum, prev, next, pageCount }) {
   const img = "https://image.tmdb.org/t/p/";
@@ -50,9 +51,11 @@ function Poster({ isLoading, data, pageNum, prev, next, pageCount }) {
               }`}
             >
               <h3>
-                {searchData.original_name ||
-                  searchData.title ||
-                  searchData.name}
+                {nameHandler(
+                  searchData.original_name ||
+                    searchData.title ||
+                    searchData.name
+                )}
               </h3>
             </Link>
           </SingleData>
@@ -86,9 +89,11 @@ const SearchResults = styled.div`
 
 const SingleData = styled.div`
   margin: 10px;
-  background-color: #c0c0c0;
+  background-color: #000;
+  color: #fff;
   width: 170px;
-  box-shadow: 0 4px 25px rgb(14 36 49 / 15%);
+  box-shadow: 0 4px 10px red, 0 -4px 10px red;
+  border-radius: 10px;
 
   img {
     width: min(200px, 100%);
@@ -97,13 +102,18 @@ const SingleData = styled.div`
   h3 {
     text-align: center;
     cursor: pointer;
-    color: black;
   }
   a {
     text-decoration: none;
-    color: black;
+    color: white;
   }
   a:hover {
     text-decoration: underline;
+  }
+
+  .img {
+    margin-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 `;

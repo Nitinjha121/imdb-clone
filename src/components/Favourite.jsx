@@ -77,13 +77,17 @@ const SearchDataStyle = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
   grid-gap: 2rem;
+  padding: 30px;
 `;
 
 const SingleData = styled.div`
-  background-color: #c0c0c0;
+  background-color: #000;
+  color: #fff;
   width: 180px;
   justify-self: center;
+  box-shadow: 0 4px 10px red, 0 -4px 10px red;
   position: relative;
+  border-radius: 10px;
 
   .delete_icon {
     position: absolute;
@@ -95,6 +99,11 @@ const SingleData = styled.div`
     color: red;
   }
 
+  .img {
+    margin-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
   img {
     width: min(200px, 100%);
     cursor: pointer;
@@ -102,11 +111,10 @@ const SingleData = styled.div`
   h3 {
     text-align: center;
     cursor: pointer;
-    color: black;
   }
   a {
     text-decoration: none;
-    color: black;
+    color: white;
   }
   a:hover {
     text-decoration: underline;
