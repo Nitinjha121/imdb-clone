@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 :root {
     --primary-bg:#000000;
     --width:max(12vw,200px);
-    --min-width:30px;
+    --min-width:40px;
 }
 
 body {
@@ -27,12 +27,10 @@ body {
 .App{
     height:100%;
     width:100%;
-    
+    -webkit-tap-highlight-color: transparent;
 }
 
-.menuToggle {
-  display: none !important;
-}
+
 
 .hideImg {
   transform: translateX(-100%);
@@ -59,26 +57,12 @@ body {
   background-color: red;
 }
 
-@media (max-width: 900px) {
-  .menuToggle {
-    display: inline !important;
-    margin: 10px;
-    z-index: 8;
-    position: sticky;
-    cursor: pointer;
-    top: 10px;
-  }
-  .short_hidden {
-    opacity: 0;
-    width: 0% !important;
-    transition: all 1s !important;
-  }
-}
+
 
 .img{
   overflow: hidden;
   width:100%;
-  height:255px;
+  height:270px;
   img{
 
     transition: all 1s;
@@ -104,7 +88,7 @@ button {
 button:hover{
   
   box-shadow: 0px 0px 20px 2px black,
-              0px 0px 20px 2px red ;
+              0px 0px 20px 5px red ;
 }
 
 

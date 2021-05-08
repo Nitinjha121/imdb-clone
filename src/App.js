@@ -10,13 +10,16 @@ import Collection from "./components/Collection";
 import Favourite from "./components/Favourite";
 import NotFound from "./components/404";
 
-function App() {
+const App = () => {
+  let menu;
+  const removeToggle = (setNavMenu) => (menu = setNavMenu);
+
   return (
     <div className="App">
       <GlobalStyle />
       <BarStyle>
-        <SideBar />
-        <div className="right-side">
+        <SideBar removeToggle={removeToggle} />
+        <div className="right-side" onClick={() => menu(false)}>
           <Nav />
           <div className="changeble">
             <Switch>
@@ -51,7 +54,7 @@ function App() {
       </BarStyle>
     </div>
   );
-}
+};
 
 export default App;
 

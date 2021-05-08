@@ -92,12 +92,15 @@ const NavStyle = styled.div`
   top: 0;
   background-color: var(--primary-bg);
 
-  @media (max-width: 380px) {
+  @media (max-width: 410px) {
     .nav__favourite {
       display: none;
     }
 
     height: 50px;
+    input {
+      width: 80%;
+    }
   }
 
   a {

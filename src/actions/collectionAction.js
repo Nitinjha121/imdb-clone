@@ -1,26 +1,15 @@
-import { fetchCollection, bashUrl } from "./api";
+import { fetchCollection } from "./api";
+import action from "./action";
 
-const collectionAction = (media, type, page = "1") => async (dispatch) => {
-  try {
-    dispatch({
-      type: "LOADING_DETAIL",
-    });
-
-    const fetchCollectionMedia = await bashUrl.get(
-      fetchCollection(media, type, page)
-    );
-
-    dispatch({
-      type: "COLLECTION_MEDIA",
-      payload: {
-        fetchCollectionMedia,
-      },
-    });
-  } catch (error) {
-    dispatch({
-      type: "ERROR",
-    });
-  }
-};
+const collectionAction = (media, type, page) => async (dispatch) =>
+  action(
+    dispatch,
+    fetchCollection,
+    "COLLECTION_MEDIA",
+    "func",
+    media,
+    type,
+    page
+  );
 
 export default collectionAction;

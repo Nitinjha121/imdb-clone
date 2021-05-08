@@ -86,6 +86,7 @@ const PosterContainer = styled.div`
 const Poster = styled.div`
   background-color: black;
   margin: 20px;
+  margin-bottom: 40px;
   box-shadow: 0 4px 10px red, 0 -4px 10px red;
   border-radius: 10px;
   position: relative;
@@ -105,7 +106,7 @@ const Poster = styled.div`
     border-top-right-radius: 10px;
   }
   img {
-    width: 170px;
+    width: 190px;
     cursor: pointer;
   }
 

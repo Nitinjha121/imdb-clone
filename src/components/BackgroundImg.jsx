@@ -61,6 +61,9 @@ const Container = styled.div`
   a {
     color: #ffffff;
   }
+  button:hover {
+    box-shadow: none !important;
+  }
 
   @media (max-width: 500px) {
     .control-dots {
@@ -108,5 +111,6 @@ const Background = styled.div`
       height: 60vh;
     }
   }
+
   transition: all 1s;
 `;

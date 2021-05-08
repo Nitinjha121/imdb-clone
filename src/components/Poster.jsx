@@ -1,8 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Star } from "./GlobalStyle";
 import { nameHandler } from "./helper/function";
+import { SearchDataStyle, SingleData } from "./CommonStyle";
 
 function Poster({ isLoading, data, pageNum, prev, next, pageCount }) {
   const img = "https://image.tmdb.org/t/p/";
@@ -26,7 +26,7 @@ function Poster({ isLoading, data, pageNum, prev, next, pageCount }) {
                     ((searchData.profile_path &&
                       "w300" + searchData.profile_path) ||
                       (searchData.poster_path &&
-                        "w185" + searchData.poster_path))
+                        "w300" + searchData.poster_path))
                   }
                   alt={
                     searchData.original_name ||
@@ -73,47 +73,11 @@ function Poster({ isLoading, data, pageNum, prev, next, pageCount }) {
 
 export default Poster;
 
-const SearchDataStyle = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-`;
-
 const SearchResults = styled.div`
   .pagination {
     display: flex;
     justify-content: space-around;
     padding: 20px;
     width: 100%;
-  }
-`;
-
-const SingleData = styled.div`
-  margin: 10px;
-  background-color: #000;
-  color: #fff;
-  width: 170px;
-  box-shadow: 0 4px 10px red, 0 -4px 10px red;
-  border-radius: 10px;
-
-  img {
-    width: min(200px, 100%);
-    cursor: pointer;
-  }
-  h3 {
-    text-align: center;
-    cursor: pointer;
-  }
-  a {
-    text-decoration: none;
-    color: white;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-
-  .img {
-    margin-bottom: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
   }
 `;

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Star } from "./GlobalStyle";
+import { SearchDataStyle, SingleData } from "./CommonStyle";
+import { nameHandler } from "./helper/function";
 
 function Favourite() {
   const [arr, setArr] = useState([]);
@@ -58,7 +59,9 @@ function Favourite() {
             <Link
               to={`/${data.episode_run_time ? "tv" : "movie"}/list/${data.id}`}
             >
-              <h3>{data.original_name || data.title || data.name}</h3>
+              <h3>
+                {nameHandler(data.original_name || data.title || data.name)}
+              </h3>
             </Link>
             <DeleteIcon
               onClick={deleteHandler.bind(this, data.id)}
@@ -72,51 +75,3 @@ function Favourite() {
 }
 
 export default Favourite;
-
-const SearchDataStyle = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-  grid-gap: 2rem;
-  padding: 30px;
-`;
-
-const SingleData = styled.div`
-  background-color: #000;
-  color: #fff;
-  width: 180px;
-  justify-self: center;
-  box-shadow: 0 4px 10px red, 0 -4px 10px red;
-  position: relative;
-  border-radius: 10px;
-
-  .delete_icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-  }
-  .delete_icon:hover {
-    color: red;
-  }
-
-  .img {
-    margin-bottom: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  img {
-    width: min(200px, 100%);
-    cursor: pointer;
-  }
-  h3 {
-    text-align: center;
-    cursor: pointer;
-  }
-  a {
-    text-decoration: none;
-    color: white;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-`;

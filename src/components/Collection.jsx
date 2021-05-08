@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import collectionAction from "../actions/collectionAction";
 import Poster from "./Poster";
 
-function Collection() {
+const Collection = () => {
   const {
     collection: { collectionMedia, isLoading, pageCount },
   } = useSelector((state) => state);
@@ -46,6 +46,6 @@ function Collection() {
       pageCount={pageCount}
     />
   );
-}
+};
 
-export default Collection;
+export default React.memo(Collection);

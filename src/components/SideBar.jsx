@@ -1,9 +1,9 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Menu from "./Menu";
 import MovieIcon from "@material-ui/icons/Movie";
 import TvIcon from "@material-ui/icons/Tv";
 
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import popularMovieAction from "../actions/popularMovieAction";
 import popularTvAction from "../actions/popularTvAction";
@@ -12,10 +12,11 @@ import HomeIcon from "@material-ui/icons/Home";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
 
-function SideBar() {
+function SideBar({ removeToggle }) {
   const dispatch = useDispatch();
-
   const [navMenu, setNavMenu] = useState(false);
+
+  removeToggle(setNavMenu);
 
   const menu = [
     {
@@ -74,10 +75,30 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   z-index: 4;
-  height: 100vh;
+  height: 140vh;
+
+  .menuToggle {
+    display: none !important;
+  }
 
   @media (max-width: 900px) {
     width: var(--min-width);
+
+    .menuToggle {
+      display: inline !important;
+      font-size: 30px;
+      margin: 10px;
+      z-index: 8;
+      position: sticky;
+      cursor: pointer;
+      top: 10px;
+    }
+
+    .short_hidden {
+      opacity: 0;
+      width: 0%;
+      transition: all 1s ease-in-out;
+    }
   }
 
   a {
@@ -103,6 +124,7 @@ const SideBarStyle = styled.div`
     width: min(400px, 30vw);
     transition: all 1s;
     height: 100%;
+
     h1 {
       display: none;
     }
